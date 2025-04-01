@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+// import { Switch, Route } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import NavBar from './components/NavBar';
-import Dashboard from './pages/Dashboard';
-import Login from './pages/Login';
-import Workouts from './pages/Workouts';
-import Skills from './pages/Skills';
-import Nutrition from './pages/Nutrition';
-import { UserProvider } from './context/UserContext'
+import NavBar from './NavBar';
+import Dashboard from '../pages/Dashboard';
+import Login from '../pages/Login';
+import Workouts from '../pages/Workouts';
+import Skills from '../pages/Skills';
+import Nutrition from '../pages/Nutrition';
+import { UserProvider } from '../context/UserContext'
 
 
 function App() {
