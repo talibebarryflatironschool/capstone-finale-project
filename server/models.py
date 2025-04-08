@@ -13,11 +13,12 @@ class User(db.Model, SerializerMixin):
     password_digest = db.Column(db.String)
     role = db.Column(db.String)
 
-    workouts = db.relationship('Workout', backref='user', lazy=True)
-    skill_sessions = db.relationship('SkillSession', backref='user', lazy=True)
-    nutrition_logs = db.relationship('NutritionLog', backref='user', lazy=True)
-    squads = db.relationship('UserSquad', backref='user', lazy=True)
-
+    workouts = db.relationship('Workout', back_populates='user', lazy=True)
+    skill_sessions = db.relationship('SkillSession', back_populates='user', lazy=True)
+    nutrition_logs = db.relationship('NutritionLog', back_populates='user', lazy=True)
+    squads_association = db.relationship('UserSquad', backref='user')
+    squads = association_proxy('squads_association', 'squad')
+    
 class Workout(db.Model, SerializerMixin):
     __tablename__ = 'workouts'
 
@@ -27,6 +28,8 @@ class Workout(db.Model, SerializerMixin):
     workout_type = db.Column(db.String)
     duration = db.Column(db.Integer)
     notes = db.Column(db.Text)
+
+    user = db.relationship('User', back_populates='workouts')
 
 class SkillSession(db.Model, SerializerMixin):
     __tablename__ = 'skill_sessions'
@@ -38,6 +41,8 @@ class SkillSession(db.Model, SerializerMixin):
     performance_score = db.Column(db.Integer)
     notes = db.Column(db.Text)
 
+    user = db.relationship('User', back_populates = 'skill_sessions')
+
 class NutritionLog(db.Model, SerializerMixin):
     __tablename__ = 'nutrition_logs'
 
@@ -48,7 +53,9 @@ class NutritionLog(db.Model, SerializerMixin):
     calories = db.Column(db.Integer)
     protein = db.Column(db.Integer)
     carbs = db.Column(db.Integer)
-    fats = db.Column(db.Integer)
+    fats = db.Column(db.Integer,)
+
+    user = db.relationship('User', back_populates = "nutrition_logs")
 
 class Squad(db.Model, SerializerMixin):
     __tablename__ = 'squads'

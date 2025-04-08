@@ -1,13 +1,18 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react'
 
-export const UserContext = createContext();
+export const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch('/check_session')
-      .then(r => r.ok && r.json())
+    fetch('/check_session', {
+      credentials: 'include' // ← This is the key
+    })
+      .then(r => {
+        if (r.ok) return r.json();
+        else return null;  
+      })
       .then(data => setUser(data));
   }, []);
 

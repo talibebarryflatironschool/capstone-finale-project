@@ -17,9 +17,9 @@ with app.app_context():
         user = User(
             name=faker.name(),
             email=faker.email(),
-            role=faker.job()
+            role=faker.job(),
+            password_digest="1234"
         )
-        user.set_password("password123")
         users.append(user)
         db.session.add(user)
 

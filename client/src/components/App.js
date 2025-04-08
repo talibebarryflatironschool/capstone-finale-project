@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { Switch, Route } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar';
 import Dashboard from '../pages/Dashboard';
@@ -16,7 +15,7 @@ function App() {
       <UserProvider>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/workouts" element={<Workouts />} />
           <Route path="/skills" element={<Skills />} />
@@ -28,3 +27,10 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+// impliment patch  and delete for workout component .
